@@ -311,3 +311,9 @@ kubectl get svc -n ivolve
 
 
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/6b45860b-2385-4b7c-a9cc-9c41887b936c" />
+
+---
+
+## flow of the project
+
+<img width="1796" height="655" alt="Image" src="https://github.com/user-attachments/assets/4e41969f-3976-4a7a-8a28-100a04daaf34" />
