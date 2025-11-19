@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/Aliabdrabo/finalProject-manifests
     path: argocd 
-    targetRevision: HEAD
+    targetRevision: main
 
   destination:
     server: https://kubernetes.default.svc

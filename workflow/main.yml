@@ -56,18 +56,34 @@ jobs:
           repository: Aliabdrabo/finalProject-manifests
           ref: main
           token: ${{ secrets.REPO_TOKEN }}
-          path: manifests
+          path: repo
 
       - name: Update image version in deployment.yaml
         run: |
-          cd manifests
-          sed -i "s|image:.*|image: ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPO }}:${{ env.IMAGE_TAG }}|" deployment.yaml
+          cd repo/manifests/overlays/prod
+          sed -i "s|image:.*|image: ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPO }}:${{ env.IMAGE_TAG }}|" image-patch.yaml
 
       - name: Commit and push changes
         run: |
-          cd manifests
+          cd repo/
           git config user.name "Aliabdrabo"
           git config user.email "aliabdrabu78@gmail.com"
           git add .
           git commit -m "Update image tag to ${{ env.IMAGE_TAG }}"
           git push
+
+  notify-slack:
+    name: Notify Slack
+    runs-on: ubuntu-latest
+    needs: [build-scan-push, update-deployment-file]
+    if: always()
+    steps:
+      - name: Slack Notification
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: |
+            {
+              "text": "Pipeline Status:\n- Build & Scan: *${{ needs.build-scan-push.result }}*\n- Update Deployment: *${{ needs.update-deployment-file.result }}*\n\nImage Tag: `${{ env.IMAGE_TAG }}`"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

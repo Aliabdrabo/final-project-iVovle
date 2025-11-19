@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: ivolve-container
-          image: alia153/final-project-ivolve:v0
+          image: 747034604314.dkr.ecr.eu-central-1.amazonaws.com/finalproject-ivolve-repo:v7
           ports:
             - containerPort: 5000
           env:

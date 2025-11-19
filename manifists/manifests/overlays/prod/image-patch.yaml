@@ -1,0 +1,12 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ivolve-app
+  namespace: ivolve 
+spec:
+  template:
+    spec:
+      containers:
+      - name: ivolve-container
+        image: 747034604314.dkr.ecr.eu-central-1.amazonaws.com/finalproject-ivolve-repo:v7
+
