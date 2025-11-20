@@ -26,16 +26,20 @@ The infrastructure is built using **Terraform** and AWS resources:
    - CIDR block: `10.0.0.0/16`
    - Public and private subnets across **two Availability Zones** for high availability.
    - DNS support and hostnames enabled.
+ <img width="1508" height="231" alt="Image" src="https://github.com/user-attachments/assets/0e033db2-8cba-449c-ad3c-5485ed0043e6" />
 
 2. **Subnets**
    - **Public Subnets**: For NAT Gateway, Internet Gateway, and public-facing resources.
    - **Private Subnets**: For EKS worker nodes and private resources.
+<img width="1598" height="358" alt="Image" src="https://github.com/user-attachments/assets/59f0e6b2-f0c4-4eae-8756-1b0e25fec37d" />
 
 3. **Internet Gateway (IGW)**
    - Allows public access to resources in public subnets.
+<img width="1592" height="242" alt="Screenshot 2025-11-18 215131" src="https://github.com/user-attachments/assets/f1fef273-f390-4ea4-aa64-a636038d5293" />
 
 4. **NAT Gateway**
    - Deployed in public subnets to provide internet access to private subnets.
+<img width="1605" height="248" alt="Screenshot 2025-11-18 215116" src="https://github.com/user-attachments/assets/fb88883c-586e-4a07-a622-fd499d3d3239" />
 
 5. **Route Tables**
    - Public route table: Routes `0.0.0.0/0` traffic through IGW.
@@ -49,13 +53,19 @@ The infrastructure is built using **Terraform** and AWS resources:
    - Managed Kubernetes cluster using **Amazon EKS**.
    - **Two worker nodes**, deployed in separate private subnets.
    - Worker nodes type: `t3.micro` (Free Tier eligible for testing).
+<img width="1897" height="937" alt="Screenshot 2025-11-18 215018" src="https://github.com/user-attachments/assets/23c90d5f-afa5-4e13-9c85-93134f364b93" />
 
 8. **IAM Roles**
    - Roles for EKS cluster and worker nodes to allow AWS resources access.
+<img width="1266" height="101" alt="Screenshot 2025-11-18 215553" src="https://github.com/user-attachments/assets/dfd25ca5-f920-410b-be1b-df960bf578ad" />
 
 9. **ECR Repository**
    - For storing Docker images for deployment in the cluster.
+<img width="1582" height="241" alt="Screenshot 2025-11-18 215143" src="https://github.com/user-attachments/assets/dee32b35-e1fb-4d2e-aa6b-b963c965354e" />
 
+<img width="1541" height="330" alt="Screenshot 2025-11-18 215202" src="https://github.com/user-attachments/assets/67e7c27b-61f0-4eb1-8f21-5bdb6e19d582" />
+
+<img width="1552" height="437" alt="Screenshot 2025-11-18 215213" src="https://github.com/user-attachments/assets/1843e09d-21ed-47c7-82ae-708b9e350cbc" />
 
 
 ## ⚙️ Terraform Modules
